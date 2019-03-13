@@ -1,20 +1,25 @@
+import java.time.LocalDate;
+import java.util.Map;
+import java.util.HashMap;
+
 public class TodoMatrix {
-    private Map<String,TodoQuarter> todoQuarters;
+    private HashMap<String,TodoQuarter> todoQuarters;
 
     public TodoMatrix() {
         // Constructs a *TodoMatrix* object with map 
         // of all possible quarters
     }
 
-    public Map getQuarters() {
+    public HashMap<String,TodoQuarter> getQuarters() {
         // Returns a private filed *todoQuarters*.
+        return this.todoQuarters;
     }
 
-    public TodoQuarter getQuarter(String status) {
-        // Returns a chosen *TodoQuarter* object from a
-        // map *todoQuarters*. Status should be one of
-        // the possible statuses ('IU', 'IN', 'NU', 'NN').
-    }
+    // public TodoQuarter getQuarter(String status) {
+    //     // Returns a chosen *TodoQuarter* object from a
+    //     // map *todoQuarters*. Status should be one of
+    //     // the possible statuses ('IU', 'IN', 'NU', 'NN').
+    // }
 
     public void addItem(String title, LocalDate deadline, boolean isImportant) {
         // Adds new item to map *todoQuarters* using adequate
@@ -67,7 +72,9 @@ public class TodoMatrix {
     }
 
     public String toString() {
+        String string = "";
         // Returns a todoQuarters list (an Eisenhower todoMatrix)
         // formatted to string.
+        return string;
     }
 }

@@ -1,5 +1,9 @@
-public class TodoQuarter {
-    private List<TodoItem> todoItems;
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+public class TodoQuarter{
+
+    private ArrayList<TodoItem> todoItems;
     
     public TodoQuarter() {
         // Constructs a *TodoQuarter* object with list of
@@ -21,22 +25,22 @@ public class TodoQuarter {
         // *isDone* set to *true* from list *todoItems*.
     }
 
-    public TodoItem getItem(int index) {
-        // Returns *TodoItem* object from *index* of list
-        // *todoItems*.
-    }
+    // public TodoItem getItem(int index) {
+    //     // Returns *TodoItem* object from *index* of list
+    //     // *todoItems*.
+    // }
 
-    public List getItems() {
-        // Returns private field *todoItems*.
-    }
+    // public ArrayList<TodoItem> getItems() {
+    //     // Returns private field *todoItems*.
+    // }
 
-    public String toString() {
-        // Returns a formatted list of *todoItems* sorted 
-        // decreasing by *deadline*. There is an expecting
-        // output:
+    // public String toString() {
+    //     // Returns a formatted list of *todoItems* sorted 
+    //     // decreasing by *deadline*. There is an expecting
+    //     // output:
 
-        // ```1. [ ] 9-6  go to the doctor
-        // 2. [x] 11-6 submit assignment``
-    }
+    //     // ```1. [ ] 9-6  go to the doctor
+    //     // 2. [x] 11-6 submit assignment``
+    // }
 
 }

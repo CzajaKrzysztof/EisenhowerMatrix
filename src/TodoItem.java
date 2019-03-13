@@ -6,23 +6,24 @@ public class TodoItem {
     private boolean isDone;
 
     public TodoItem(String title, LocalDate deadline) {
-        // Constructs a ToDoItem objec
+        this.title = title;
+        this.deadline = deadline;
     }
 
     public String getTitle() {
-        // Getter for the * title * field
+        return this.title;
     }
 
     public LocalDate getDeadline() {
-        // Getter for the * deadline * field
+        return this.deadline;
     }
 
-    public void mart() {
-        // Sets the object's * isDone * attribute to True
+    public void mark() {
+        this.isDone = true;
     }
 
     public void unmark() {
-        // Sets the object's * isDone * attribute to False
+        this.isDone = false;
     }
 
     public String toString() {
@@ -36,5 +37,6 @@ public class TodoItem {
         // Expecting output for example undone item:
 
         // `[ ] 28-6 submit assignment`
+        return "[]";
     }
 }
