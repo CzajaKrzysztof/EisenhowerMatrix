@@ -8,6 +8,7 @@ public class TodoQuarter{
     public TodoQuarter() {
         // Constructs a *TodoQuarter* object with list of
         // TodoItem objects
+        this.todoItems = new ArrayList<TodoItem>();
     }
 
     public void addItem(String title, LocalDate deadline) {

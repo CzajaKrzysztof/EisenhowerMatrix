@@ -37,6 +37,7 @@ public class TodoItem {
         // Expecting output for example undone item:
 
         // `[ ] 28-6 submit assignment`
-        return "[]";
+        String marked = (this.isDone) ? "X" : " ";
+        return "["+ marked +"]" + this.getDeadline().getDayOfMonth() + "-" + this.getDeadline().getMonthValue() + " " + this.getTitle();
     }
 }
