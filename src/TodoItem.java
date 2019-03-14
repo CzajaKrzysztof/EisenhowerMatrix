@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class TodoItem {
+public class TodoItem implements Comparable<TodoItem>{
     private String title;
     private LocalDate deadline;
     private boolean isDone;
@@ -8,6 +8,7 @@ public class TodoItem {
     public TodoItem(String title, LocalDate deadline) {
         this.title = title;
         this.deadline = deadline;
+        this.isDone = false;
     }
 
     public String getTitle() {
@@ -41,8 +42,12 @@ public class TodoItem {
         // Expecting output for example undone item:
 
         // `[ ] 28-6 submit assignment`
-        String marked = (this.isDone) ? "X" : " ";
+        String marked = (this.isDone) ? "x" : " ";
         return "[" + marked + "] " + this.getDeadline().getDayOfMonth() + "-" + this.getDeadline().getMonthValue() + " "
                 + this.getTitle();
+    }
+
+    public int compareTo(TodoItem item) { 
+        return this.getDeadline().compareTo(item.getDeadline()); 
     }
 }
