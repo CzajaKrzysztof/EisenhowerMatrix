@@ -18,6 +18,10 @@ public class TodoItem {
         return this.deadline;
     }
 
+    public boolean isDone() {
+        return this.isDone;
+    }
+
     public void mark() {
         this.isDone = true;
     }
@@ -38,6 +42,7 @@ public class TodoItem {
 
         // `[ ] 28-6 submit assignment`
         String marked = (this.isDone) ? "X" : " ";
-        return "["+ marked +"]" + this.getDeadline().getDayOfMonth() + "-" + this.getDeadline().getMonthValue() + " " + this.getTitle();
+        return "[" + marked + "] " + this.getDeadline().getDayOfMonth() + "-" + this.getDeadline().getMonthValue() + " "
+                + this.getTitle();
     }
 }
