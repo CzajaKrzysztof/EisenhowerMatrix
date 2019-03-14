@@ -5,7 +5,7 @@ import java.util.Collections;
 
 public class TodoQuarter{
 
-    private List<TodoItem> todoItems;
+    private ArrayList<TodoItem> todoItems;
     
     public TodoQuarter() {
         // Constructs a *TodoQuarter* object with list of
