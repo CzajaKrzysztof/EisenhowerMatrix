@@ -127,7 +127,7 @@ public class TodoMatrix {
         }
     }
 
-    private static int converDateToDays(LocalDate localDate) {
+    public static int converDateToDays(LocalDate localDate) {
         int dateInDays = localDate.getYear() * 365 + localDate.getDayOfYear();
         return dateInDays;
     }

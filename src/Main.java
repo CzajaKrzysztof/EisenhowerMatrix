@@ -29,8 +29,6 @@ public class Main {
                 case "4":
                     clearScreen();
                     ui.removeTodoItem(matrix);
-                    // ask for TodoQuarter, ask for entry number
-                    // remove entry
                     break;
                 case "5":
                     clearScreen();

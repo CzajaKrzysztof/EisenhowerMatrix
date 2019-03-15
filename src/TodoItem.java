@@ -32,6 +32,10 @@ public class TodoItem implements Comparable<TodoItem>{
     }
 
     public String toString() {
+        final String RESET = "\u001B[0m";
+        final String RED = "\u001B[31m";
+        final String GREEN = "\u001B[32m";
+        final String YELLOW = "\u001B[33m";
         // Returns a formatted string with details about todoItem.
         // Format of deadline is 'day-month'
 
@@ -42,9 +46,21 @@ public class TodoItem implements Comparable<TodoItem>{
         // Expecting output for example undone item:
 
         // `[ ] 28-6 submit assignment`
+        String color = RESET;
+        int diffInDays = TodoMatrix.converDateToDays(this.deadline) - TodoMatrix.converDateToDays(LocalDate.now());
+        if (diffInDays == 0) {
+            color = RED;
+        } else if (0 < diffInDays && diffInDays <= 3) {
+            color = YELLOW;
+        } else if ( diffInDays > 3) {
+            color = GREEN;
+        }
         String marked = (this.isDone) ? "x" : " ";
-        return "[" + marked + "] " + this.getDeadline().getDayOfMonth() + "-" + this.getDeadline().getMonthValue() + " "
-                + this.getTitle();
+        int day = this.getDeadline().getDayOfMonth();
+        int month = this.getDeadline().getMonthValue();
+        String title = this.getTitle();
+        String format = color + "[%s] %d-%d %s" + RESET;
+        return String.format(format, marked, day, month, title);
     }
 
     public int compareTo(TodoItem item) { 
