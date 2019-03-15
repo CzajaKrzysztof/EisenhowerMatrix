@@ -79,16 +79,16 @@ class TodoMatrixTests {
 
     @Test
     void testSaveItemsToFile() throws IOException {
-        String fileIn = "todo_items_read_test.csv";
-        String fileOut = "todo_items_save_test.csv";
+        String fileIn = "data/todo_items_read_test.csv";
+        String fileOut = "data/todo_items_save_test.csv";
 
         this.todoMatrix.addItemsFromFile(fileIn);
         this.todoMatrix.saveItemsToFile(fileOut);
 
         List<String> expectedList = new ArrayList<>();
-        expectedList.add("make a coffee  |14-10| important");
-        expectedList.add("read about OOP  |15-10| important");
-        expectedList.add("give mentors a feedback  |23-10| important");
+        expectedList.add("make a coffee|14-10|important");
+        expectedList.add("read about OOP|15-10|important");
+        expectedList.add("give mentors a feedback|23-10|important");
 
         BufferedReader reader = new BufferedReader(new FileReader(fileOut));
         StringBuilder builder = new StringBuilder();
