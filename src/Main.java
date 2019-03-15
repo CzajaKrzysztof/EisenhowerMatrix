@@ -8,7 +8,7 @@ public class Main {
         Ui ui = new Ui();
         String option = "99";
         clearScreen();
-        while (!option.equals("8")) {
+        while (!option.equals("7")) {
             matrix.toString();
             ui.printMenu();
             option = ui.getMenuOption();
@@ -19,38 +19,32 @@ public class Main {
                     matrix.toString();
                     break;
                 case "2":
-                    clearScreen();    
+                    clearScreen();
                     ui.addNewEntry(matrix);
                     break;
                 case "3":
-                    clearScreen();    
-                    System.out.println("Mark entry as done");
-                    // ask for TodoQuarter, ask for entry number
-                    // mark entry as done.
+                    clearScreen();
+                    ui.markTodoItem(matrix, true);
                     break;
                 case "4":
-                    clearScreen();    
-                    System.out.println("Unmart entry as done");
+                    clearScreen();
+                    ui.removeTodoItem(matrix);
                     // ask for TodoQuarter, ask for entry number
-                    // mark entry as undone.
+                    // remove entry
                     break;
                 case "5":
-                    clearScreen();    
-                    System.out.println("Remove chosen entry");
+                    clearScreen();
+                    matrix.archiveItems();
                     break;
                 case "6":
-                    clearScreen();    
+                    clearScreen();
                     matrix.archiveItems();
+                    saveDataToFile(matrix);
                     break;
                 case "7":
                     clearScreen();
-                    matrix.archiveItems();   
+                    matrix.archiveItems();
                     saveDataToFile(matrix);
-                    break;
-                case "8":
-                    clearScreen();
-                    matrix.archiveItems();   
-                    saveDataToFile(matrix);  
                     System.out.println("Bye bye");
                     break;
             }

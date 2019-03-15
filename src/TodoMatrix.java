@@ -174,13 +174,13 @@ public class TodoMatrix {
     public String toString() {
         String string = "";
         System.out.println("EisenhowerMatrix:");
-        System.out.println("IMPORTANT URGENT:");
+        System.out.println("IMPORTANT URGENT (IU):");
         System.out.println(this.todoQuarters.get("IU").toString());
-        System.out.println("IMPORTANT NOT URGENT:");
+        System.out.println("IMPORTANT NOT URGENT (IN):");
         System.out.println(this.todoQuarters.get("IN").toString());
-        System.out.println("NOT IMPORTANT URGENT:");
+        System.out.println("NOT IMPORTANT URGENT (NU):");
         System.out.println(this.todoQuarters.get("NU").toString());
-        System.out.println("NOT IMPORTANT NOT URGENT:");
+        System.out.println("NOT IMPORTANT NOT URGENT (NN):");
         System.out.println(this.todoQuarters.get("NN").toString());
         return string;
     }

@@ -3,19 +3,19 @@ import java.util.Scanner;
 
 public class Ui {
     private static Scanner scanner = new Scanner(System.in);
-    private final String OPTIONS = "12345678";
+    private final String OPTIONS = "1234567";
     private final String YESNO = "yn";
+    private final String QUARTERS = "IUINNUNN";
     
     public void printMenu() {
         String menu = "MENU OPTIONS:\n" +
                       "1. Show Eisenhower matrix\n" +
                       "2. Add entry \n" +
-                      "3. Mark entry as done\n" +
-                      "4. Unmart entry as done\n" +
-                      "5. Remove chosen entry\n" +
-                      "6. Remove all marked entries\n" +
-                      "7. Save entries to file\n" +
-                      "8. Quit\n\n";
+                      "3. Mark/unmark entry\n" +
+                      "4. Remove chosen entry\n" +
+                      "5. Remove all marked entries\n" +
+                      "6. Save entries to file\n" +
+                      "7. Quit\n\n";
         System.out.println(menu);
     }
 
@@ -42,13 +42,40 @@ public class Ui {
         matrix.addItem(title, LocalDate.of(LocalDate.now().getYear(), month, day), important);
     }
 
+    public void markTodoItem(TodoMatrix matrix, boolean mark) {
+        System.out.println(matrix.toString());
+        TodoItem todoItem= getTodoItem(matrix);
+        if (todoItem.isDone()) {
+            todoItem.unmark();
+        } else {
+            todoItem.mark();
+        }
+    }
+
+    public void removeTodoItem(TodoMatrix matrix) {
+        System.out.println(matrix.toString());
+        String quarterStatus = getQuarter();
+        TodoQuarter quarter = matrix.getQuarter(quarterStatus);
+        System.out.println(quarter.toString());
+        int entryIndex = getNumber("Chose entry number", 0, quarter.getItems().size()) - 1;
+        quarter.removeItem(entryIndex);
+    }
+
+    private TodoItem getTodoItem(TodoMatrix matrix) {
+        String quarterStatus = getQuarter();
+        TodoQuarter quarter = matrix.getQuarter(quarterStatus);
+        System.out.println(quarter.toString());
+        int entryIndex = getNumber("Chose entry number", 0, quarter.getItems().size()) - 1;
+        return quarter.getItem(entryIndex);
+    }
+
     public String getTitle() {
         String input = "";
         boolean isAnswerCorrect = false;
         while (!isAnswerCorrect) {
             System.out.print("Enter todo entry title: ");
             input = getInput();
-            if (validateTitle(input)) {
+            if (validateIsStringEmpty(input)) {
                 isAnswerCorrect = true;
             } else {
                 System.out.println("Title can't be empty.\n");
@@ -92,6 +119,21 @@ public class Ui {
 
     }
 
+    public String getQuarter() {
+        String input = "";
+        boolean isAnswerCorrect = false;
+        while (!isAnswerCorrect) {
+            System.out.print("Chose quarter ('IU', 'IN', 'NU', 'NN'): ");
+            input = getInput();
+            if (input.length() == 2 && validateIsStringEmpty(input) && validateString(input, QUARTERS)) {
+                isAnswerCorrect = true;
+            } else {
+                System.out.println("Valid quartesr are 'IU', 'IN', 'NU' and 'NN'.\n");
+            }
+        }
+        return input;
+    }
+
     private String getInput() {
         String input = scanner.nextLine();
         return input;
@@ -104,8 +146,8 @@ public class Ui {
         return false;
     }
 
-    private boolean validateTitle(String title) {
-        if (!title.isBlank()) {
+    private boolean validateIsStringEmpty(String input) {
+        if (!input.isBlank()) {
             return true;
         }
         return false;
