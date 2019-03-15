@@ -82,16 +82,18 @@ public class TodoMatrix {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             while((line = reader.readLine()) != null) {
                 String[] entry = line.split("\\|");
-                LocalDate deadLine = TodoMatrix.convertToLocalDate(entry[1]);
-                if (entry.length > 2) {
-                    boolean isImportant = true;
-                    this.addItem(entry[0], deadLine, isImportant);
-                } else {
-                    this.addItem(entry[0], deadLine);;
-                }
+                if ( entry.length != 0){
+                    LocalDate deadLine = TodoMatrix.convertToLocalDate(entry[1]);
+                    if (entry.length > 2) {
+                        boolean isImportant = true;
+                        this.addItem(entry[0], deadLine, isImportant);
+                    } else {
+                        this.addItem(entry[0], deadLine);;
+                    }
                 }
             }
         }
+    }
 
     public void saveItemsToFile(String fileName) throws IOException{
         // Writes all details about TODO items to *fileName.csv*
@@ -141,7 +143,10 @@ public class TodoMatrix {
     private Collection<String> addStringsToSave(Collection<TodoItem> todoQuarter, boolean importance) {
         Collection<String> strings = new ArrayList<String>();
         for (TodoItem item: todoQuarter) {
-            String string = item.getTitle() + "|" + item.getDeadline().getDayOfMonth() + "-" + item.getDeadline().getMonthValue();
+            String title = item.getTitle();
+            String day = intToString(item.getDeadline().getDayOfMonth());
+            String month = intToString(item.getDeadline().getMonthValue());
+            String string = title + "|" + day + "-" + month;
             if (importance) {
                 string += "|important";
             }
@@ -158,16 +163,24 @@ public class TodoMatrix {
         }
     }
 
+    private String intToString(int integer) {
+        String result = String.valueOf(integer);
+            if (result.length() == 1) {
+                result = "0" + result;
+            }
+        return result;
+    }
+
     public String toString() {
         String string = "";
-        System.out.println("EisenhowerMatrix");
-        System.out.println("IU");
+        System.out.println("EisenhowerMatrix:");
+        System.out.println("IMPORTANT URGENT:");
         System.out.println(this.todoQuarters.get("IU").toString());
-        System.out.println("IN");
+        System.out.println("IMPORTANT NOT URGENT:");
         System.out.println(this.todoQuarters.get("IN").toString());
-        System.out.println("NU");
+        System.out.println("NOT IMPORTANT URGENT:");
         System.out.println(this.todoQuarters.get("NU").toString());
-        System.out.println("NN");
+        System.out.println("NOT IMPORTANT NOT URGENT:");
         System.out.println(this.todoQuarters.get("NN").toString());
         return string;
     }
