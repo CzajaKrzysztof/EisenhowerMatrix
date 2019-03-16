@@ -35,14 +35,11 @@ public class TodoMatrix {
         return todoQuarters.get(status);
     }
 
-    public void addItem(String title, LocalDate deadLine, boolean isImportant) throws IllegalArgumentException {
+    public void addItem(String title, LocalDate deadLine, boolean isImportant) {
         // Adds new item to map *todoQuarters* using adequate
         // key. You should use method *addItem* from
         // *TodoQuarter* class.
         int diffInDays = TodoMatrix.converDateToDays(deadLine) - TodoMatrix.converDateToDays(LocalDate.now());
-        if (diffInDays < 0) {
-            throw new IllegalArgumentException();
-        }
         if (diffInDays <= 3 && isImportant) {
             todoQuarters.get("IU").addItem(title, deadLine);
         } else if (diffInDays > 3 && isImportant) {

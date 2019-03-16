@@ -7,16 +7,16 @@ public class Main {
         loadDataFromFile(matrix);
         Ui ui = new Ui();
         String option = "99";
-        // clearScreen();
+        clearScreen();
         while (!option.equals("7")) {
-            System.out.printf(matrix.toString());
+            System.out.println(matrix.toString());
             ui.printMenu();
             option = ui.getMenuOption();
             switch (option) {
                 case "1":
                     clearScreen();
                     ui.printMenu();
-                    matrix.toString();
+                    System.out.println(matrix.toString());
                     break;
                 case "2":
                     clearScreen();
@@ -60,9 +60,6 @@ public class Main {
         }
         catch (IOException e) {
             System.out.println("Error: file not found!" + e);
-        }
-        catch (IllegalArgumentException e) {
-            System.out.println("Error: outdated entry!");
         }
     }
 

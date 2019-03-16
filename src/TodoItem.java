@@ -48,7 +48,7 @@ public class TodoItem implements Comparable<TodoItem>{
         // `[ ] 28-6 submit assignment`
         String color = RESET;
         int diffInDays = TodoMatrix.converDateToDays(this.deadline) - TodoMatrix.converDateToDays(LocalDate.now());
-        if (diffInDays == 0) {
+        if (diffInDays <= 0) {
             color = RED;
         } else if (0 < diffInDays && diffInDays <= 3) {
             color = YELLOW;
