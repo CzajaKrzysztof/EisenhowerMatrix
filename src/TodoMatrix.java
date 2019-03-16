@@ -173,15 +173,38 @@ public class TodoMatrix {
 
     public String toString() {
         String string = "";
-        System.out.println("EisenhowerMatrix:");
-        System.out.println("IMPORTANT URGENT (IU):");
-        System.out.println(this.todoQuarters.get("IU").toString());
-        System.out.println("IMPORTANT NOT URGENT (IN):");
-        System.out.println(this.todoQuarters.get("IN").toString());
-        System.out.println("NOT IMPORTANT URGENT (NU):");
-        System.out.println(this.todoQuarters.get("NU").toString());
-        System.out.println("NOT IMPORTANT NOT URGENT (NN):");
-        System.out.println(this.todoQuarters.get("NN").toString());
+        int columnWidth = 36;
+        String[] iuItems = todoQuarters.get("IU").toString().split("\n");
+        int iuLength = iuItems.length;
+        String[] inItems = todoQuarters.get("IN").toString().split("\n");
+        int inLength = inItems.length;
+        String[] nuItems = todoQuarters.get("NU").toString().split("\n");
+        int nuLength = nuItems.length;
+        String[] nnItems = todoQuarters.get("NN").toString().split("\n");
+        int nnLength = nnItems.length;
+        String[] important = {" "," ","I","M","P","O","R","T","A","N","T"," "," "};
+        String[] notImportant = {"N","O","T"," ","I","M","P","O","R","T","A","N","T"};
+        int URGENTLEN = "URGENT".length();
+        int NOTURGENTLEN = "NOT URGENT".length();
+        int importantLength = important.length;
+        String header = String.format("  |%3$"+((columnWidth - URGENTLEN)/2)+"s%-"+((columnWidth - URGENTLEN)/2 + URGENTLEN)+"s|%3$"+((columnWidth - NOTURGENTLEN)/2)+"s%-"+((columnWidth - NOTURGENTLEN)/2 + NOTURGENTLEN)+"s|\n", "URGENT", "NOT URGENT", " ");
+        String crossSection = String.format( "--|%1$s|%1$s|--\n", "-".repeat(columnWidth));
+        String entryFormat = "%-2s|%-"+(columnWidth)+"s|%-"+(columnWidth)+"s|\n";
+        string = string.concat(header).concat(crossSection);
+        for (int i = 0; i < importantLength; i++, iuLength--, inLength--) {
+            String urgentEntry = (iuLength > 0)? iuItems[i].toString() : " ";
+            String notUrgetnEntry = (inLength > 0)? inItems[i].toString() : " ";
+            String entry = String.format(entryFormat, important[i], urgentEntry, notUrgetnEntry);
+            string = string.concat(entry);
+        }
+        string = string.concat(crossSection);
+        for (int i = 0; i < importantLength; i++, nuLength--, nnLength--) {
+            String urgentEntry = (nuLength > 0)? nuItems[i].toString() : " ";
+            String notUrgetnEntry = (nnLength > 0)? nnItems[i].toString() : " ";
+            String entry = String.format(entryFormat, notImportant[i], urgentEntry, notUrgetnEntry);
+            string = string.concat(entry);
+        }
+        string = string.concat(crossSection);
         return string;
     }
 }

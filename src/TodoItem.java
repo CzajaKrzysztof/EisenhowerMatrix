@@ -59,7 +59,10 @@ public class TodoItem implements Comparable<TodoItem>{
         int day = this.getDeadline().getDayOfMonth();
         int month = this.getDeadline().getMonthValue();
         String title = this.getTitle();
-        String format = color + "[%s] %d-%d %s" + RESET;
+        String format = "[%s] %d-%d %s";
+        if (!this.isDone()){
+            format = color + "[%s] %d-%d %s" + RESET; // This breaks formating entry in array view with set column width
+        }
         return String.format(format, marked, day, month, title);
     }
 

@@ -7,9 +7,9 @@ public class Main {
         loadDataFromFile(matrix);
         Ui ui = new Ui();
         String option = "99";
-        clearScreen();
+        // clearScreen();
         while (!option.equals("7")) {
-            matrix.toString();
+            System.out.printf(matrix.toString());
             ui.printMenu();
             option = ui.getMenuOption();
             switch (option) {
